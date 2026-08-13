@@ -10,6 +10,9 @@ a MongoDB, Express, React, Node (MERN) javascript project that is utilized for t
 4. Stored in MongoAtlas
 5. Used REST API along with Express and Node.js
 
+## Try it here!
+[Click me!](https://victosn.github.io/note-app/)
+
 ## How it works
 - Contains 3 components (Search, List, Editor)
 - Any updates done to the notes is then updated to the database
