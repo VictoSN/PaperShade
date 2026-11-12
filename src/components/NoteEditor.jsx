@@ -25,22 +25,17 @@ function NoteEditor({ currentNote, setNote, onDelete, setMobileView }) {
         localStorage.setItem("displayMode", darkMode);
     }, [darkMode]);
 
-    // Sync local state when a different note is selected
-    useEffect(() => {
-        if(!currentNote) {
-            // Reset editor when null
-            setNoteTitle("")
-            setNoteFavorite(false)
-            setNoteCategory("")
-            setNoteContent("")
-            return
-        }
-
-        setNoteTitle(currentNote.title || "");
-        setNoteFavorite(currentNote.favorite || false);
-        setNoteCategory(currentNote.category || "");
-        setNoteContent(currentNote.content || "");
-    }, [currentNote]);
+    // Sync local state when a different note is selected.
+    // Done during render instead of in an effect to avoid a cascading render.
+    const [syncedId, setSyncedId] = useState(currentNote?._id ?? null);
+    if ((currentNote?._id ?? null) !== syncedId) {
+        setSyncedId(currentNote?._id ?? null);
+        // currentNote is null when the note was created/deleted: reset the editor
+        setNoteTitle(currentNote?.title || "");
+        setNoteFavorite(currentNote?.favorite || false);
+        setNoteCategory(currentNote?.category || "");
+        setNoteContent(currentNote?.content || "");
+    }
 
     // Update the UI then persist to db
     const favoriteNote = async () => {

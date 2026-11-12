@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import './SearchBar.css';
 import yellowStar from "../assets/star-yellow.svg";
 import whiteStar from "../assets/star-white.svg";

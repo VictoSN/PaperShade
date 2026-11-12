@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./NoteList.css";
 import yellowStar from "../assets/star-yellow.svg";
 
