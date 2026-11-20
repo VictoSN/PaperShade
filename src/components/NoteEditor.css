@@ -1,0 +1,100 @@
+#NoteEditor { 
+    display: flex; 
+    flex-direction: 
+    column; height: 100dvh; 
+}
+
+.controlSection { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+
+    padding: 10px; 
+    border-bottom: 1px solid var(--border); 
+    gap: 8px; 
+}
+
+.controlDiv, .mobileSubDiv { 
+    display: flex; 
+    gap: 8px; 
+}
+
+.controlDiv input, .mobileSubDiv input { 
+    padding: 8px 10px; 
+    border: 1px solid var(--input-border); 
+    border-radius: 6px; 
+    font-size: 0.9em; 
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+.controlDiv button, .bckButton { 
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    transition: filter 0.2s;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+}
+
+.controlDiv button:hover { filter: brightness(85%); }
+
+.bckButton { 
+    display: none;
+    color: var(--text);
+    font-size: 1.5em;
+}
+
+.savButton { color: rgb(0, 150, 0); }
+.delButton { color: rgb(214, 26, 26); }
+.dupButton, .newButton { color: var(--text);}
+
+.svg {
+    width: 20px;
+    height: 20px;
+}
+
+.textContent { 
+    flex: 1; 
+    resize: none; 
+    padding: 16px; 
+    border: none; 
+    font-size: 1.3em; 
+    outline: none; 
+    background: var(--textarea-bg);
+    color: var(--text);
+}
+
+@media (max-width: 767px) {
+    .controlSection { 
+        flex-direction: column; 
+    }
+
+    .controlDiv {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+
+    .mobileControlDiv {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mobileSubDiv {
+        display: flex;
+        flex-direction: row;
+
+        width: 100%;
+    }
+
+    .mobileSubDiv input {
+        width: 100%;
+        padding: 12px 10px;
+    }
+
+    .bckButton { display: block; }
+
+    .bckButton, .favButton {
+        width: 50px;
+    }
+}
