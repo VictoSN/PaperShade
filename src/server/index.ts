@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import notesRouter from "./routes/notes.js"
+import notesRouter from "./routes/notes.ts"
 dotenv.config();
 
 const app = express();
