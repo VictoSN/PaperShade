@@ -1,71 +1,75 @@
-# note-app
+# React + TypeScript + Vite
 
-## A note-app that is created using MERN tech stack
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-a MongoDB, Express, React, Node (MERN) javascript project that is utilized for the following functions:
+Currently, two official plugins are available:
 
-1. Adding / Deleting Notes
-2. Categories and Favorites Notes
-3. Light & Dark UIs
-4. Stored in MongoAtlas
-5. Used REST API along with Express and Node.js
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Try it here!
-[Click me!](https://victosn.github.io/note-app/)
+## React Compiler
 
-## How it works
-- Contains 3 components (Search, List, Editor)
-- Any updates done to the notes is then updated to the database
-- The UI is re-rendered whenever any changes are detected
-- Stores UI preferences in localStorage
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Screenshots
-### Default Interface
-![Default](public/sample/Default.png)
+## Expanding the ESLint configuration
 
-### Main Interface
-![Main Interface](public/sample/Main.png)
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### Dark Mode
-![Dark Mode](public/sample/Example-Dark.png)
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### Search
-![Search](public/sample/Example-Search.png)
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-### Mobile View 1
-<p align="center">
-  <img src="public/sample/Example-Mobile-1.png" width="280">
-</p>
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-### Mobile View 2
-<p align="center">
-  <img src="public/sample/Example-Mobile-2.png" width="280">
-</p>
-
-## How to run
-1. Clone the repo
-2. Run:
-
-```bash
-npm install
 ```
 
-3. Create .env with:
+You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
 
-```bash
-MONGO_URI=connection_string
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+
 ```
-
-4. Run:
-
-```bash
-node src/server/index.js
-```
-
-5. Run:
-```bash
-npm run dev
-```
-
-## License
-This project is licensed under the [MIT License](LICENSE)
